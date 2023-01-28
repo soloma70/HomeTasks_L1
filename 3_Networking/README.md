@@ -136,12 +136,12 @@ DNS1=8.8.8.8
 ![](./screenshots/Networking_t3s9.jpg)
 ![](./screenshots/Networking_t3s10.jpg)
 
-### Step 9: Route on *inet*:
+### Step 9: Route on *Internet*:
 ![](./screenshots/Networking_t3s11.jpg)
 
 
 ## Task 4: Assignment of two IP addresses on the virtual interface *lo* *сlient1*
-### Step 1: Definition IP Addr and run 2 commands on **client1**:
+### Step 1: Definition IP Addr and run 2 commands on *client1*:
   #### a) +10 - `172.16.15.1/24`
     +20 - `172.16.25.1/24`
   #### b) `sudo ip addr add 172.16.15.1/24 dev lo label lo:10`
@@ -191,12 +191,12 @@ Shared address = 10101100.00010000.000 | 00000.00000000
 ![](./screenshots/Networking_t6s1.jpg)
 
 ### Step 2: SSH keygen and copy open keys on *server1* for hosts *client1* and *client2*:
-  For **client1**
+  For *client1*
   #### a) `ssh-keygen` 
   #### b) `ssh-copy-id -i ./.ssh/id_rsa.pub soloma@192.168.1.100`
   #### c) `ssh soloma70@192.168.1.100`
 ![](./screenshots/Networking_t6s2b.jpg)
-  #### d) For **client2** to repeat p.p. a - c
+  #### d) For *client2* to repeat p.p. a - c
 ![](./screenshots/Networking_t6s2e.jpg)
   
   #### e) File content `authorized_keys` on *server1*
@@ -208,17 +208,17 @@ Shared address = 10101100.00010000.000 | 00000.00000000
 
 
 ## Task 7: Configuration on *server1* firewall
-### Step 1: Add rules on **server1**:
+### Step 1: Add rules on *server1*:
 `sudo iptables -A INPUT -i enp0s9 -p tcp --dport 22 -j DROP`
 `sudo iptables -A FORWARD -p icmp -d 172.16.25.1 -j DROP`
 ![](./screenshots/Networking_t7s1.jpg)
 
 ### Step 2: SSH connection with *server1*:
-  #### a) From **client1**
+  #### a) From *client1*
 ![](./screenshots/Networking_t7s2a.jpg)
-  #### b) From **client2**
+  #### b) From *client2*
 ![](./screenshots/Networking_t7s2b.jpg)
-  #### c) ping on 172.16.15.1 and 172.16.25.1 from **client2**
+  #### c) ping on 172.16.15.1 and 172.16.25.1 from *client2*
 ![](./screenshots/Networking_t7s2c.jpg)
 
 
@@ -232,6 +232,6 @@ Shared address = 10101100.00010000.000 | 00000.00000000
 `sudo iptables -t nat -A POSTROUTING -j MASQUERADE`
 ![](./screenshots/Networking_t8s2.jpg)
 
-### Step 3: Check connect to Internet:
+### Step 3: Check connect to *Internet*:
 ![](./screenshots/Networking_t8s3a.jpg)
 ![](./screenshots/Networking_t8s3b.jpg)
