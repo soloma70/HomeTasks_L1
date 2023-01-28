@@ -107,7 +107,7 @@ DNS1=8.8.8.8
 
 
 ## Task 3: Checking connection between hosts
-`***server1***`:
+`server1`:
 ### Step 1: Route on *client1*:
 ![](./screenshots/Networking_t3s1.jpg)
 
@@ -117,7 +117,7 @@ DNS1=8.8.8.8
 ### Step 3: Route on *inet*:
 ![](./screenshots/Networking_t3s3.jpg)
 
-`***client1***`:
+`client1`:
 ### Step 4: Route on *server*:
 ![](./screenshots/Networking_t3s4.jpg)
 
@@ -128,7 +128,7 @@ DNS1=8.8.8.8
 ### Step 6: Route on *inet*:
 ![](./screenshots/Networking_t3s7.jpg)
 
-`***client2***`:
+`client2`:
 ### Step 7: Route on *server*:
 ![](./screenshots/Networking_t3s8.jpg)
 
