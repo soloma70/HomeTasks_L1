@@ -142,12 +142,9 @@ DNS1=8.8.8.8
 
 ## Task 4: Assignment of two IP addresses on the virtual interface *lo* *сlient1*
 ### Step 1: Definition IP Addr and run 2 commands on *client1*:
-  #### a) +10 - `172.16.15.1/24`
-    +20 - `172.16.25.1/24`
-  #### b) `sudo ip addr add 172.16.15.1/24 dev lo label lo:10`
-    `sudo ip addr add 172.16.25.1/24 dev lo label lo:20`
+  #### a) +10 - `172.16.15.1/24`  +20 - `172.16.25.1/24`
+  #### b) `sudo ip addr add 172.16.15.1/24 dev lo label lo:10`   `sudo ip addr add 172.16.25.1/24 dev lo label lo:20`
 ![](./screenshots/Networking_t4s1.jpg)
-
 
 ### Step 2: Add routes:
 *client2*: `sudo ip route add 172.16.25.1/24 via 172.16.5.1`
