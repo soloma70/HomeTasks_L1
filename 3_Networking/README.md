@@ -38,7 +38,7 @@ enp0s9: 10.11.70.1/24
 ![](./screenshots/Networking_t1s2.jpg)
 
 
-## Task 2: Configure DHCP servise on server1 which will configure Int1 addresses on *client1* and *client2*
+## Task 2: Configure DHCP servise on *server1* which will configure Int1 addresses on *client1* and *client2*
 ### Step 1: Install DHCP server: `sudo apt install isc-dhcp-server`
 
 ### Step 2: Write network interface in config file `/etc/default/isc-dhcp-server`:
