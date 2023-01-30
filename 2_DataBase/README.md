@@ -1,6 +1,6 @@
 # Database Administration. Task DB1.
 
-## Part1.
+## Part 1.
 ### Step 1. Download and install MySQL server for Linux Ubuntu.
 ```
 sudo apt install mysql-server
