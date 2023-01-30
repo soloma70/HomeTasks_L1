@@ -10,7 +10,8 @@ Attention! To execute a script:
   - need a password `sudo`
   - need to add execution rights `/<file_location_path>/chmod a+x hi1a.sh`
 
-![Script A]<https://github.com/soloma70/HomeTasks_L1/blob/master/1_LinuxBash/scripts/ht1a.sh>
+<https://github.com/soloma70/HomeTasks_L1/blob/master/1_LinuxBash/scripts/ht1a.sh>
+
 
 
 ## Part B. Create a script to answer the following questions:
@@ -26,7 +27,8 @@ Attention! To execute a script:
   - need to add execution rights `/<file_location_path>/chmod a+x hi1b.sh`
   - pass the file name with the full path as an argument
 
-[./scripts/ht1b.sh]
+<https://github.com/soloma70/HomeTasks_L1/blob/master/1_LinuxBash/scripts/ht1b.sh>
+
 
 
 ## Part C. Create a data backup script that takes the following data as parameters:
@@ -42,4 +44,4 @@ Attention! To execute a script:
     $ crontab - e
     * * * * * /<full_path_to_ht1c.sh>/ht1c.sh /<full_path_to_origin_dir>/ /<full_path_to_bak_dir>/ /<full_path_to_log_dir>/
 ```
-[./scripts/ht1c.sh]
+<https://github.com/soloma70/HomeTasks_L1/blob/master/1_LinuxBash/scripts/ht1c.sh>
