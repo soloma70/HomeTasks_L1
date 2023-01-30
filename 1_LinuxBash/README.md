@@ -10,7 +10,7 @@ Attention! To execute a script:
   - need a password `sudo`
   - need to add execution rights `/<file_location_path>/chmod a+x hi1a.sh`
 
-[![ht1a.sh](https://github.com/soloma70/HomeTasks_L1/blob/master/1_LinuxBash/scripts/ht1a.sh)]
+<https://github.com/soloma70/HomeTasks_L1/blob/master/1_LinuxBash/scripts/ht1a.sh>
 
 
 ## Part B. Create a script to answer the following questions:
