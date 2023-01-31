@@ -160,5 +160,159 @@ drwxrwxrwx 2 ec2-user ec2-user  16384 Jan 30 23:45 lost+found
 ![](./screenshots/AWS_s8_03.jpg)
 ![](./screenshots/AWS_s8_04.jpg)
 
-## Step 9.
+## Step 9.  Store and Retrieve a File, creating your own repository.
+![](./screenshots/AWS_s9_01.jpg)
+![](./screenshots/AWS_s9_02.jpg)
+![](./screenshots/AWS_s9_03.jpg)
+![](./screenshots/AWS_s9_04.jpg)
+![](./screenshots/AWS_s9_05.jpg)
+![](./screenshots/AWS_s9_06.jpg)
+![](./screenshots/AWS_s9_07.jpg)
+![](./screenshots/AWS_s9_08.jpg)
+![](./screenshots/AWS_s9_09.jpg)
+![](./screenshots/AWS_s9_10.jpg)
+![](./screenshots/AWS_s9_11.jpg)
+![](./screenshots/AWS_s9_11.jpg)
 
+## Step 10. Upload files to to Amazon S3 using the AWS CLI. Create a user AWS IAM, configure CLI AWS and upload any files to S3.
+![](./screenshots/AWS_s10_01.jpg)
+![](./screenshots/AWS_s10_02.jpg)
+![](./screenshots/AWS_s10_03.jpg)
+![](./screenshots/AWS_s10_04.jpg)
+![](./screenshots/AWS_s10_05.jpg)
+![](./screenshots/AWS_s10_06.jpg)
+![](./screenshots/AWS_s10_07.jpg)
+![](./screenshots/AWS_s10_08.jpg)
+```
+soloma70@ubuntu-master:~$
+soloma70@ubuntu-master:~$ aws configure
+AWS Access Key ID [None]: AKI*****************
+AWS Secret Access Key [None]: Oj9u************************************
+Default region name [None]: us-east-1
+Default output format [None]: json
+soloma70@ubuntu-master:~$
+soloma70@ubuntu-master:~$ aws s3 mb s3://ht4-cli-test-bucket
+make_bucket: ht4-cli-test-bucket
+soloma70@ubuntu-master:~$
+soloma70@ubuntu-master:~$ aws s3 cp ./hometask/dir_origin/9745.txt s3://ht4-cli-test-bucket/
+upload: hometask/dir_origin/9745.txt to s3://ht4-cli-test-bucket/9745.txt
+soloma70@ubuntu-master:~$ aws s3 cp ./hometask/ht1a.sh s3://ht4-cli-test-bucket/
+upload: hometask/ht1a.sh to s3://ht4-cli-test-bucket/ht1a.sh
+soloma70@ubuntu-master:~$ aws s3 cp ./hometask/ht1b.sh s3://ht4-cli-test-bucket/
+upload: hometask/ht1b.sh to s3://ht4-cli-test-bucket/ht1b.sh
+soloma70@ubuntu-master:~$ aws s3 cp ./hometask/ht1c.sh s3://ht4-cli-test-bucket/
+upload: hometask/ht1c.sh to s3://ht4-cli-test-bucket/ht1c.sh
+soloma70@ubuntu-master:~$
+soloma70@ubuntu-master:~$ aws s3 cp s3://ht4-cli-test-bucket/ht1a.sh ./aws_cli_test/
+download: s3://ht4-cli-test-bucket/ht1a.sh to aws_cli_test/ht1a.sh
+soloma70@ubuntu-master:~$
+soloma70@ubuntu-master:~$ aws s3 rm s3://ht4-cli-test-bucket/ht1c.sh
+delete: s3://ht4-cli-test-bucket/ht1c.sh
+soloma70@ubuntu-master:~$
+```
+![](./screenshots/AWS_s10_09.jpg)
+
+## Step 11. Deploy Docker Containers on Amazon Elastic Container Service (Amazon ECS).
+```
+soloma70@ubuntu-master:~/docker_aws$ mkdir docker_aws
+soloma70@ubuntu-master:~/docker_aws$ cd docker_aws/
+soloma70@ubuntu-master:~/docker_aws$ nano Dockerfile
+------------------------------------------------------------------------------
+  GNU nano 6.2                          Dockerfile *
+FROM ubuntu:18.04
+
+# Install dependencies
+RUN apt-get update && \
+ apt-get -y install apache2
+
+# Install apache and write hello world message
+RUN echo 'Hello World!' > /var/www/html/index.html
+
+# Configure apache
+RUN echo '. /etc/apache2/envvars' > /root/run_apache.sh && \
+ echo 'mkdir -p /var/run/apache2' >> /root/run_apache.sh && \
+ echo 'mkdir -p /var/lock/apache2' >> /root/run_apache.sh && \
+ echo '/usr/sbin/apache2 -D FOREGROUND' >> /root/run_apache.sh && \
+ chmod 755 /root/run_apache.sh
+
+EXPOSE 80
+
+CMD /root/run_apache.sh
+------------------------------------------------------------------------------
+soloma70@ubuntu-master:~/docker_aws$ docker build -t hello-world .
+Sending build context to Docker daemon   2.56kB
+Step 1/6 : FROM ubuntu:18.04
+18.04: Pulling from library/ubuntu
+a055bf07b5b0: Pull complete
+...
+...
+Successfully built ce01c18fb1a2
+Successfully tagged hello-world:latest
+soloma70@ubuntu-master:~/docker_aws$
+soloma70@ubuntu-master:~/docker_aws$ docker images --filter reference=hello-world
+REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
+hello-world   latest    ce01c18fb1a2   2 minutes ago   203MB
+soloma70@ubuntu-master:~/docker_aws$
+```
+![](./screenshots/AWS_s11_01.jpg)
+```
+soloma70@ubuntu-master:~/docker_aws$ aws ecr create-repository --repository-name ht4-hello-repo --region us-east-1
+{
+    "repository": {
+        "repositoryArn": "arn:aws:ecr:us-east-1:082641893437:repository/ht4-hello-repo",
+        "registryId": "082641893437",
+        "repositoryName": "ht4-hello-repo",
+        "repositoryUri": "082641893437.dkr.ecr.us-east-1.amazonaws.com/ht4-hello-repo",
+        "createdAt": 1675181175.0,
+        "imageTagMutability": "MUTABLE",
+        "imageScanningConfiguration": {
+            "scanOnPush": false
+        },
+        "encryptionConfiguration": {
+            "encryptionType": "AES256"
+        }
+    }
+}
+soloma70@ubuntu-master:~/docker_aws$
+soloma70@ubuntu-master:~/docker_aws$ docker tag hello-world 082641893437.dkr.ecr.us-east-1.amazonaws.com/ht4-hello-repo
+soloma70@ubuntu-master:~/docker_aws$ docker login -u AWS -p $(aws ecr get-login-password --region us-east-1) 082641893437.dkr.ecr.us-east-1.amazonaws.com
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+WARNING! Your password will be stored unencrypted in /home/soloma70/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+Login Succeeded
+soloma70@ubuntu-master:~/docker_aws$
+soloma70@ubuntu-master:~/docker_aws$ docker push 082641893437.dkr.ecr.us-east-1.amazonaws.com/ht4-hello-repo
+Using default tag: latest
+The push refers to repository [082641893437.dkr.ecr.us-east-1.amazonaws.com/ht4-hello-repo]
+1e7299707666: Pushed
+79e00b3c1c89: Pushed
+d876598d7eba: Pushed
+101b05ef38e1: Pushed
+latest: digest: sha256:44dd3894169eefdd9ab9bbf1718fc09b9f6ad9b0ff58a519ffe167e80a2cbf5c size: 1155
+soloma70@ubuntu-master:~/docker_aws$
+```
+![](./screenshots/AWS_s11_02.jpg)
+```
+soloma70@ubuntu-master:~/docker_aws$
+soloma70@ubuntu-master:~/docker_aws$ aws ecr delete-repository --repository-name ht4-hello-repo --region us-east-1 --force
+{
+    "repository": {
+        "repositoryArn": "arn:aws:ecr:us-east-1:082641893437:repository/ht4-hello-repo",
+        "registryId": "082641893437",
+        "repositoryName": "ht4-hello-repo",
+        "repositoryUri": "082641893437.dkr.ecr.us-east-1.amazonaws.com/ht4-hello-repo",
+        "createdAt": 1675181175.0,
+        "imageTagMutability": "MUTABLE"
+    }
+}
+soloma70@ubuntu-master:~/docker_aws$
+```
+## Step 12. Run a Serverless "Hello, World!" with AWS Lambda.
+![](./screenshots/AWS_s12_01.jpg)
+![](./screenshots/AWS_s12_02.jpg)
+![](./screenshots/AWS_s12_03.jpg)
+![](./screenshots/AWS_s12_04.jpg)
+![](./screenshots/AWS_s12_05.jpg)
+![](./screenshots/AWS_s12_06.jpg)
+![](./screenshots/AWS_s12_07.jpg)
