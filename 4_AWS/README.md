@@ -160,5 +160,5 @@ drwxrwxrwx 2 ec2-user ec2-user  16384 Jan 30 23:45 lost+found
 ![](./screenshots/AWS_s8_03.jpg)
 ![](./screenshots/AWS_s8_04.jpg)
 
-
+## Step 9.
 
