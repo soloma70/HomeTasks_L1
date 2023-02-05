@@ -147,10 +147,10 @@ Terraform has been successfully initialized!
 
 ~/terraform$ 
 
+```
+
 <./terraform/main.tf>
 
-
-```
 
 
 ### Step 7. Add app service implementation.
