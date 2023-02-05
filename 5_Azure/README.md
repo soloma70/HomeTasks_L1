@@ -149,7 +149,7 @@ Terraform has been successfully initialized!
 
 ```
 
-<./terraform/main.tf>
+<https://github.com/soloma70/HomeTasks_L1/tree/master/5_Azure/terraform/main.tf>
 
 
 
