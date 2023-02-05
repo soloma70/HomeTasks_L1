@@ -2,7 +2,7 @@
 
 ## Part 1. Configure application.
 ### Step 1. Create a service connection in a Azure DevOps project to your subscription.
-![./screenshots/Azure_p1s1.jpg]
+![](./screenshots/Azure_p1s1.jpg)
 
 ### Step 2. Build your app locally .net project via dotnet tool. dotnet restore/build/run.
 ```
@@ -71,23 +71,23 @@ Build at: 2023-02-04T16:36:24.724Z - Hash: 349930a376598739 - Time: 21319ms
 
 ✔ Compiled successfully.
 ```
-![./screenshots/Azure_p1s2.jpg]
+![]()./screenshots/Azure_p1s2.jpg)
 
 ### Step 3. Create an Azure DevOps repo.
-![./screenshots/Azure_p1s3.jpg]
+![](./screenshots/Azure_p1s3.jpg)
 
 ### Step 4. Create a branching policy for you application. Added yourself as a reviewer.
-![./screenshots/Azure_p1s4.jpg]
+![]()./screenshots/Azure_p1s4.jpg)
 
 ## Part 2. Configure a pipeline to deploy infrastructure.
 ### Step 1. Create service connection – manual way.
-![./screenshots/Azure_p2s1.jpg]
+![](./screenshots/Azure_p2s1.jpg)
 
 ### Step 3. Create a separate resource group and deploy azure storage account.
-![./screenshots/Azure_p2s3a.jpg]
+![](./screenshots/Azure_p2s3a.jpg)
 
 ### Step 4. Create a container with the name “tfstate” and remember the name. Use portal settings.
-![./screenshots/Azure_p2s4a.jpg]
+![](./screenshots/Azure_p2s4a.jpg)
 
 ### Step 5. Create another repo to store devops code.
 
@@ -147,7 +147,7 @@ Terraform has been successfully initialized!
 
 ~/terraform$ 
 
-
+<./terraform/main.tf>
 
 
 ```
