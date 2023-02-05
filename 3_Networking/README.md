@@ -16,13 +16,13 @@ network:
         search: [hometask.edu]
     enp0s8:
       addresses: [10.70.5.1/24]
-#      gateway4: 10.7.5.1
+#      gateway4: 10.70.5.1
       nameservers:
         addresses: [10.70.5.1]
         search: [hometask.edu]
     enp0s9:
       addresses: [10.11.70.1/24]
-#      gateway4: 10.11.72.1
+#      gateway4: 10.11.70.1
       nameservers:
         addresses: [10.11.70.1]
         search: [hometask.edu]
