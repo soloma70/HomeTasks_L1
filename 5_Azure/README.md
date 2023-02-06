@@ -91,9 +91,23 @@ Build at: 2023-02-04T16:36:24.724Z - Hash: 349930a376598739 - Time: 21319ms
 
 ### Step 5. Create another repo to store devops code.
 
+
+
 ### Step 6. Create a folder terraform. 
 ```
 ~$ mrdir terraform
+```
+### Step 7. Add app service implementation.
+![](./screenshots/Azure_p2s7a.jpg)
+
+
+### Step 8. Integrate application insights with app service.
+
+
+
+
+
+```
 ~$ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 ~$ az login
 A web browser has been opened at https://login.microsoftonline.com/organizations/oauth2/v2.0/authorize. Please continue the login in the web browser. If no web browser is available or if the web browser fails to open, use device code flow with `az login --use-device-code`.
@@ -148,22 +162,23 @@ Terraform has been successfully initialized!
 ~/terraform$ 
 
 ```
-
 <https://github.com/soloma70/HomeTasks_L1/tree/master/5_Azure/terraform/main.tf>
+```
+~/terraform$ terraform plan 
+
+~/terraform$ terraform apply 
+```
 
 
 
-### Step 7. Add app service implementation.
 
-### Step 8. Integrate application insights with app service.
+### Step 9. Updated backend “azurerm” according to the guide.
 
-### Step 7. Updated backend “azurerm” according to the guide.
+### Step 10. Run az login or Connect-AzAccount to connect the azure subscription from your local.
 
-### Step 8. Run az login or Connect-AzAccount to connect the azure subscription from your local.
+### Step 11. Run terraform apply to deploy infrastructure.
 
-### Step 9. Run terraform apply to deploy infrastructure.
-
-### Step 10. Create a yaml pipeline with the following steps: terraform install, terraform init, terraform plan/apply.
+### Step 12. Create a yaml pipeline with the following steps: terraform install, terraform init, terraform plan/apply.
 
 ### Step 11. Inside yaml pipeline add trigger to main branch. The scenario – when main is updated, pipeline should run automatically
 
