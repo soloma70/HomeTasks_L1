@@ -1,8 +1,5 @@
 name: 'Deploy infrastructure. Attempt $(builderCounter)'
 
-trigger: 
-  - master
-
 variables: 
   - name: builderCounter
     value: $[counter('buildCounter', 1)]
