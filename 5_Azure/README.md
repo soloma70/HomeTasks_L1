@@ -90,25 +90,49 @@ Build at: 2023-02-04T16:36:24.724Z - Hash: 349930a376598739 - Time: 21319ms
 ![](./screenshots/Azure_p2s4a.jpg)
 
 ### Step 5. Create another repo to store devops code.
+![](./screenshots/Azure_p2s5a.jpg)
 
-
-
-### Step 6. Create a folder terraform. 
-```
-~$ mrdir terraform
-```
-### Step 7. Add app service implementation.
-![](./screenshots/Azure_p2s7a.jpg)
-
-
-### Step 8. Integrate application insights with app service.
-
-
-
-
-
+### Step 6. Install Azur CLI and create a folder terraform. 
 ```
 ~$ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+~$ mrdir terraform && cd terraform
+~/terraform$ mkdir tf_app_serv && cd tf_app_serv
+~/terraform/tf_app_serv$ nano create-app-serv.tf
+```
+<https://github.com/soloma70/HomeTasks_L1/tree/master/5_Azure/terraform/create-app-serv.tf>
+
+### Step 7. Add app service implementation.
+```
+~/terraform/tf_app_serv$ terraform init 
+~/terraform/tf_app_serv$ terraform apply 
+...
+Apply complete! Resources: 4 added, 0 changed, 0 destroyed.
+```
+![](./screenshots/Azure_p2s7a.jpg)
+![](./screenshots/Azure_p2s7b.jpg)
+
+### Step 8. Integrate application insights with app service.
+![](./screenshots/Azure_p2s8a.jpg)
+
+### Step 9. Updated backend “azurerm” according to the guide.
+```
+~/terraform/tf_app_serv$ cd ..
+~/terraform$ mkdir tf_rssa && cd tf_rssa
+~/terraform/tf_rssa$ nano create-remote-storage.tf
+```
+<https://github.com/soloma70/HomeTasks_L1/tree/master/5_Azure/terraform/create-remote-storage.tf>
+```
+~/terraform/tf_rssa$ terraform init 
+~/terraform/tf_rssa$ terraform apply 
+...
+Apply complete! Resources: 4 added, 0 changed, 0 destroyed.
+```
+![](./screenshots/Azure_p2s9a.jpg)
+![](./screenshots/Azure_p2s9b.jpg)
+![](./screenshots/Azure_p2s9c.jpg)
+
+### Step 10. Run az login or Connect-AzAccount to connect the azure subscription from your local.
+```
 ~$ az login
 A web browser has been opened at https://login.microsoftonline.com/organizations/oauth2/v2.0/authorize. Please continue the login in the web browser. If no web browser is available or if the web browser fails to open, use device code flow with `az login --use-device-code`.
 [
@@ -141,48 +165,36 @@ The output includes credentials that you must protect. Be sure that you do not i
 ~$ export ARM_CLIENT_SECRET="<PASSWORD_VALUE>"
 ~$ export ARM_SUBSCRIPTION_ID="<SUBSCRIPTION_ID>"
 ~$ export ARM_TENANT_ID="<TENANT_VALUE>"
+~$ export RESOURCE_GROUP_NAME="tfstate"
+~$ export STORAGE_ACCOUNT_NAME="tfstate7exqe"
+~$ ACCOUNT_KEY=$(az storage account keys list --resource-group $RESOURCE_GROUP_NAME --account-name $STORAGE_ACCOUNT_NAME --query '[0].value' -o tsv)
+~$ export ARM_ACCESS_KEY=$ACCOUNT_KEY
 ~$ 
-~$ cd terraform
-~/terraform$ terraform init
-
-Initializing the backend...
-
-Initializing provider plugins...
-- Finding hashicorp/azurerm versions matching "~> 3.0.2"...
-- Installing hashicorp/azurerm v3.0.2...
-- Installed hashicorp/azurerm v3.0.2 (signed by HashiCorp)
-
-Terraform has created a lock file .terraform.lock.hcl to record the provider
-selections it made above. Include this file in your version control repository
-so that Terraform can guarantee to make the same selections by default when
-you run "terraform init" in the future.
-
-Terraform has been successfully initialized!
-
-~/terraform$ 
-
 ```
-<https://github.com/soloma70/HomeTasks_L1/tree/master/5_Azure/terraform/main.tf>
-```
-~/terraform$ terraform plan 
-
-~/terraform$ terraform apply 
-```
-
-
-
-
-### Step 9. Updated backend “azurerm” according to the guide.
-
-### Step 10. Run az login or Connect-AzAccount to connect the azure subscription from your local.
 
 ### Step 11. Run terraform apply to deploy infrastructure.
+```
+~$ cd terraform/
+~/terraform$ mkdir tf_bend && cd tf_bend
+~/terraform/tf_bend$ nano backend.tf
+```
+<https://github.com/soloma70/HomeTasks_L1/tree/master/5_Azure/terraform/backend.tf>
+```
+~/terraform/tf_bend$ terraform init 
+~/terraform/tf_bend$ terraform apply
+...
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+```
+![](./screenshots/Azure_p2s9d.jpg)
 
 ### Step 12. Create a yaml pipeline with the following steps: terraform install, terraform init, terraform plan/apply.
+![](./screenshots/Azure_p2s12a.jpg)
 
-### Step 11. Inside yaml pipeline add trigger to main branch. The scenario – when main is updated, pipeline should run automatically
+### Step 13. Inside yaml pipeline add trigger to main branch. The scenario – when main is updated, pipeline should run automatically
+![](./screenshots/Azure_p2s13a.jpg)
 
-### Step 12. Added 3 steps – terraform install, terraform init, terraform plan/apply. Plan is an optional one. You may add it as 4th step
+### Step 14. Added 3 steps – terraform install, terraform init, terraform plan/apply. Plan is an optional one. You may add it as 4th step
+<https://github.com/soloma70/HomeTasks_L1/tree/master/5_Azure/devops/tf-pipeline-deploy.yml>
 
 ## Part 3. Create a deploy pipeline to app service.
 ### Step 1. Add yml pipeline to the application folder.
@@ -190,3 +202,4 @@ Terraform has been successfully initialized!
 ### Step 2. Your pipeline structure should contain 2 stages. 1st – build, create zip archieve, and publish an artifact. 2nd – download an artifact and deploy it to azure app service.
 
 ### Step 3. To deploy .zip to app service use azure app service deployment task.
+<https://github.com/soloma70/HomeTasks_L1/tree/master/5_Azure/devops/app-pipeline-deploy.yml>

@@ -1,0 +1,47 @@
+name: 'Deploy infrastructure. Attempt $(builderCounter)'
+
+trigger: 
+  - main
+
+variables: 
+  - name: builderCounter
+    value: $[counter('buildCounter', 1)]
+
+stages: 
+- stage: Terraform
+  displayName: 'Terraform deploy'
+  jobs:
+  - deployment: "Deploy"
+    pool: 
+      vmImage: ubuntu-latest
+    environment: validation
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - checkout: self
+            clean: true
+            fetchDepth: 5
+          
+          - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
+            displayName: 'Install Terraform'
+
+          - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV3@3
+            displayName: 'Terraform : azurerm init'
+            inputs:
+              backendServiceArm: 'Azure subscription 1 (89a9cdbb-8e2a-46f4-bc7d-219dfc85f4b7)'
+              backendAzureRmResourceGroupName: 'Soloma-SAG'
+              backendAzureRmStorageAccountName: solomatf
+              backendAzureRmContainerName: tfstate
+              backendAzureRmKey: 'HHlT8+kcHb4rh8Ud9IjHPmd/7UfH8G0G1vIGL/gAGkDhhIFNlNLaT8DlrzfYHbBeOiNwjMQUmzkN+AStDMzjHw=='
+
+          - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV3@3
+            displayName: 'Terraform : azurerm apply'
+            inputs:
+              command: apply
+              environmentServiceNameAzureRM: 'Azure subscription 1(89a9cdbb-8e2a-46f4-bc7d-219dfc85f4b7)'
+              backendServiceArm: 'Azure subscription 1 (89a9cdbb-8e2a-46f4-bc7d-219dfc85f4b7)'
+              backendAzureRmResourceGroupName: 'Soloma-SAG'
+              backendAzureRmStorageAccountName: solomatf
+              backendAzureRmContainerName: tfstate
+              backendAzureRmKey: 'HHlT8+kcHb4rh8Ud9IjHPmd/7UfH8G0G1vIGL/gAGkDhhIFNlNLaT8DlrzfYHbBeOiNwjMQUmzkN+AStDMzjHw=='

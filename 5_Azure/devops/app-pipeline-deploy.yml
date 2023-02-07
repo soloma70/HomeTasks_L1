@@ -1,0 +1,80 @@
+name: 'Validation running. Attempt $(builderCounter)'
+
+trigger: 
+  - main
+
+variables: 
+  - name: webAppName
+    value: 'soloma-angular-webapp'
+  - name: builderCounter
+    value: $[counter('buildCounter', 1)]
+
+stages: 
+- stage: Build
+  displayName: 'Npm install/build'
+  jobs:
+  - deployment: "BuildApp"
+    pool: 
+      vmImage: windows-2019
+    environment: validation
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - checkout: self
+            clean: true
+            fetchDepth: 5
+
+          - task: Npm@1
+            displayName: 'npm install'
+            inputs:
+              verbose: false
+
+          - task: Npm@1
+            displayName: 'npm custom'
+            inputs:
+              command: custom
+              verbose: false
+              customCommand: 'run build'
+
+          - task: ArchiveFiles@2
+            displayName: 'Create an artifact'
+            inputs:
+              rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist/test-application/*'
+              archiveType: 'zip'
+              archiveFile: $(Build.ArtifactStagingDirectory)/test-application.zip
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+              pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
+              artifactName: 'test-application' 
+            displayName: "Upload Artifacts"
+
+- stage: DeployWebApp
+  displayName: 'Deploy app service to the dev'
+  dependsOn: Build
+  jobs:
+  - deployment: "sandbox"
+    pool: 
+      vmImage: windows-2019
+    environment: soloma-app1
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              buildType: 'current'
+              artifactName: 'test-application'
+              targetPath: '$(System.DefaultWorkingDirectory)'
+
+          - task: AzureWebApp@1
+            displayName: 'Azure Web App Deploy: $(webAppName)'
+            inputs:
+              azureSubscription: 'iac-tf-deploy-dev'
+              appType: webApp
+              appName: $(webAppName)
+              package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+              resourceGroupName: Test-Lecture1
+              
