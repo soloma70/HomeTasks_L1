@@ -202,4 +202,7 @@ Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 ### Step 2. Your pipeline structure should contain 2 stages. 1st – build, create zip archieve, and publish an artifact. 2nd – download an artifact and deploy it to azure app service.
 
 ### Step 3. To deploy .zip to app service use azure app service deployment task.
+
 <https://github.com/soloma70/HomeTasks_L1/tree/master/5_Azure/devops/app-pipeline-deploy.yml>
+
+![](./screenshots/Azure_p3s3a.jpg)
