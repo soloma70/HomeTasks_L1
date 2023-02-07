@@ -213,5 +213,5 @@ Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 <https://github.com/soloma70/HomeTasks_L1/tree/master/5_Azure/devops/app-pipeline-deploy.yml>
 
 ![](./screenshots/Azure_p3s3a.jpg)
-![](./screenshots/Azure_p3s3и.jpg)
-![](./screenshots/Azure_p3s3с.jpg)
+![](./screenshots/Azure_p3s3b.jpg)
+![](./screenshots/Azure_p3s3c.jpg)
