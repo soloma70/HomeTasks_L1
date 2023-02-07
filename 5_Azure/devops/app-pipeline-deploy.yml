@@ -1,7 +1,7 @@
 name: 'Validation running. Attempt $(builderCounter)'
 
 trigger: 
-  - main
+  - master
 
 variables: 
   - name: webAppName
