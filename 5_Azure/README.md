@@ -215,3 +215,6 @@ Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 ![](./screenshots/Azure_p3s3a.jpg)
 ![](./screenshots/Azure_p3s3b.jpg)
 ![](./screenshots/Azure_p3s3c.jpg)
+
+#### a) Trigger firing: launching the pipeline on a commit to the master branch.
+![](./screenshots/Azure_p3s3d.jpg)
