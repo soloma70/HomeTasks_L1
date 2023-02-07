@@ -195,6 +195,12 @@ Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 
 ### Step 14. Added 3 steps – terraform install, terraform init, terraform plan/apply. Plan is an optional one. You may add it as 4th step
 <https://github.com/soloma70/HomeTasks_L1/tree/master/5_Azure/devops/tf-pipeline-deploy.yml>
+![](./screenshots/Azure_p2s14a.jpg)
+![](./screenshots/Azure_p2s14b.jpg)
+![](./screenshots/Azure_p2s14c.jpg)
+![](./screenshots/Azure_p2s14d.jpg)
+![](./screenshots/Azure_p2s14e.jpg)
+
 
 ## Part 3. Create a deploy pipeline to app service.
 ### Step 1. Add yml pipeline to the application folder.
