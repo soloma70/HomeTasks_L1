@@ -29,6 +29,7 @@ stages:
           - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV3@3
             displayName: 'Terraform : azurerm init'
             inputs:
+              workingDirectory: terraform
               backendServiceArm: 'Azure subscription 1 (89a9cdbb-8e2a-46f4-bc7d-219dfc85f4b7)'
               backendAzureRmResourceGroupName: 'Soloma-SAG'
               backendAzureRmStorageAccountName: solomatf
@@ -39,6 +40,7 @@ stages:
             displayName: 'Terraform : azurerm apply'
             inputs:
               command: apply
+              workingDirectory: terraform
               environmentServiceNameAzureRM: 'Azure subscription 1(89a9cdbb-8e2a-46f4-bc7d-219dfc85f4b7)'
               backendServiceArm: 'Azure subscription 1 (89a9cdbb-8e2a-46f4-bc7d-219dfc85f4b7)'
               backendAzureRmResourceGroupName: 'Soloma-SAG'

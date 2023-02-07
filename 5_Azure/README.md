@@ -195,6 +195,7 @@ Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 
 ### Step 14. Added 3 steps – terraform install, terraform init, terraform plan/apply. Plan is an optional one. You may add it as 4th step
 <https://github.com/soloma70/HomeTasks_L1/tree/master/5_Azure/devops/tf-pipeline-deploy.yml>
+
 ![](./screenshots/Azure_p2s14a.jpg)
 ![](./screenshots/Azure_p2s14b.jpg)
 ![](./screenshots/Azure_p2s14c.jpg)
@@ -212,3 +213,5 @@ Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 <https://github.com/soloma70/HomeTasks_L1/tree/master/5_Azure/devops/app-pipeline-deploy.yml>
 
 ![](./screenshots/Azure_p3s3a.jpg)
+![](./screenshots/Azure_p3s3и.jpg)
+![](./screenshots/Azure_p3s3с.jpg)

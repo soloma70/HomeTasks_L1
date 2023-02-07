@@ -5,7 +5,7 @@ trigger:
 
 variables: 
   - name: webAppName
-    value: 'soloma-angular-webapp'
+    value: 'soloma-angular-app'
   - name: builderCounter
     value: $[counter('buildCounter', 1)]
 
@@ -57,7 +57,7 @@ stages:
   - deployment: "sandbox"
     pool: 
       vmImage: windows-2019
-    environment: soloma-app1
+    environment: Soloma-Env-WebApp
     strategy:
       runOnce:
         deploy:
@@ -72,9 +72,9 @@ stages:
           - task: AzureWebApp@1
             displayName: 'Azure Web App Deploy: $(webAppName)'
             inputs:
-              azureSubscription: 'iac-tf-deploy-dev'
+              azureSubscription: 'Soloma-SC-WebApp'
               appType: webApp
               appName: $(webAppName)
               package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-              resourceGroupName: Test-Lecture1
+              resourceGroupName: Soloma-RG-WebApp
               
