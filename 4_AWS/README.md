@@ -316,3 +316,10 @@ soloma70@ubuntu-master:~/docker_aws$
 ![](./screenshots/AWS_s12_05.jpg)
 ![](./screenshots/AWS_s12_06.jpg)
 ![](./screenshots/AWS_s12_07.jpg)
+
+## Step 13. Create a static website on Amazon S3, publicly available (using a custom domain registered with Route 53). Post on the page your own photo, the name of the educational program (EPAM Cloud&DevOps Fundamentals Autumn 2022), the list of AWS services with which the student worked within the educational program or earlier and the full list with links of completed labs.
+![](./screenshots/AWS_s13_01.jpg)
+![](./screenshots/AWS_s13_02.jpg)
+![](./screenshots/AWS_s13_03.jpg)
+
+![CV Mykhailo Solomashenko](<http://soloma70.pp.ua/>)
