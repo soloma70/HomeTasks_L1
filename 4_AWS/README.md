@@ -322,4 +322,4 @@ soloma70@ubuntu-master:~/docker_aws$
 ![](./screenshots/AWS_s13_02.jpg)
 ![](./screenshots/AWS_s13_03.jpg)
 
-![CV Mykhailo Solomashenko](<http://soloma70.pp.ua/>)
+![CV Mykhailo Solomashenko]<http://soloma70.pp.ua/>
