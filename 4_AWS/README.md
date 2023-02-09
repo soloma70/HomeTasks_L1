@@ -323,4 +323,7 @@ soloma70@ubuntu-master:~/docker_aws$
 ![](./screenshots/AWS_s13_03.jpg)
 
 
+## My web-page with List of AWS services I have worked with and my passed hands-on tutorials AWS:
+
 <http://soloma70.pp.ua/>
+
