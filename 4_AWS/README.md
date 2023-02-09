@@ -322,4 +322,6 @@ soloma70@ubuntu-master:~/docker_aws$
 ![](./screenshots/AWS_s13_02.jpg)
 ![](./screenshots/AWS_s13_03.jpg)
 
+```
 <http://soloma70.pp.ua/>
+```
